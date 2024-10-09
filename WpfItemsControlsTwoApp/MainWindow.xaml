@@ -1,0 +1,68 @@
+﻿<Window x:Class="WpfItemsControlsTwoApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfItemsControlsTwoApp"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="1200">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <TabControl FontSize="30"
+                    x:Name="tabsInfo">
+            <TabItem>
+                <TabItem.Header>First Tab</TabItem.Header>
+                <TabItem.Content>
+                    <StackPanel>
+                        <TextBlock Text="Name"/>
+                        <TextBox />
+                    </StackPanel>
+                </TabItem.Content>
+            </TabItem>
+
+            <TabItem>
+                <TabItem.Header>Second Tab</TabItem.Header>
+                <TabItem.Content>
+                    <StackPanel>
+                        <RadioButton GroupName="city" Content="Moscow"/>
+                        <RadioButton GroupName="city" Content="St Peterburg"/>
+                        <RadioButton GroupName="city" Content="Kazan"/>
+                    </StackPanel>
+                </TabItem.Content>
+            </TabItem>
+        </TabControl>
+
+        <TreeView x:Name="tree"
+                  Grid.Column="1"
+                  FontSize="30">
+            <TreeViewItem Header="Notebooks">
+                <TreeViewItem Header="Asus" />
+                <TreeViewItem Header="Hp" />
+            </TreeViewItem>
+
+            <TreeViewItem Header="Phones"
+                          IsExpanded="True"
+                          IsSelected="True">
+                <TreeViewItem Header="Samsung" />
+                <TreeViewItem Header="Xiaomi" />
+            </TreeViewItem>
+        </TreeView>
+
+        <DataGrid x:Name="dataGrid"
+                  FontSize="30"
+                  Grid.Column="2"
+                  ItemsSource="{DynamicResource ResourceKey=products}"
+                  AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Product" Binding="{Binding Path=Name}" />
+                <DataGridHyperlinkColumn Header="Brand" Binding="{Binding Path=Brand}" />
+                <DataGridTextColumn Header="Price" Binding="{Binding Path=Price}" />
+                <DataGridCheckBoxColumn Header="Active" Binding="{Binding Path=IsActive}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
